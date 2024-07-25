@@ -5,21 +5,22 @@ const HOUR: i32 = 60;
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct Clock {
-    hour: i32,
-    minute: i32,
+    hour: u8,
+    minute: u8,
 }
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
         let total_minutes = (DAY + (hours * HOUR + minutes) % DAY) % DAY;
-        let hour = total_minutes / 60;
-        let minute = total_minutes % 60;
 
-        Self { hour, minute }
+        Self {
+            hour: (total_minutes / HOUR) as u8,
+            minute: (total_minutes % HOUR) as u8,
+        }
     }
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
-        Self::new(self.hour, self.minute + minutes)
+        Self::new(self.hour as i32, self.minute as i32 + minutes)
     }
 }
 
