@@ -3,6 +3,10 @@
 version = 3
 
 [[package]]
+name = "clock"
+version = "2.4.0"
+
+[[package]]
 name = "deranged"
 version = "0.3.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
