@@ -11,7 +11,7 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
-        let total_minutes = (DAY + (hours * HOUR + minutes) % DAY) % DAY;
+        let total_minutes = (hours * HOUR + minutes).rem_euclid(DAY);
 
         Self {
             hour: (total_minutes / HOUR) as u8,
@@ -29,5 +29,3 @@ impl fmt::Display for Clock {
         write!(f, "{:02}:{:02}", self.hour, self.minute)
     }
 }
-
-
