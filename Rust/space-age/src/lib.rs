@@ -8,15 +8,15 @@ pub struct Duration {
 
 impl From<u64> for Duration {
     fn from(s: u64) -> Self {
-        Duration { seconds: s }
+        Self { seconds: s }
     }
 }
 
 pub trait Planet {
-    const EARTH_SECONDS_YEAR: u64 = 31557600;
+    const EARTH_SECONDS_PER_YEAR: u64 = 31557600;
 
-    fn years_during(d: &Duration) -> f64 {
-        d.seconds as f64 / (Self::ratio() * (Self::EARTH_SECONDS_YEAR as f64))
+    fn years_during(duration: &Duration) -> f64 {
+        (duration.seconds as f64) / ((Self::EARTH_SECONDS_PER_YEAR as f64) * Self::ratio())
     }
 
     fn ratio() -> f64;
