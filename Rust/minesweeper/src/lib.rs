@@ -1,14 +1,10 @@
 pub fn annotate(minefield: &[&str]) -> Vec<String> {
+    if minefield.is_empty() || minefield[0].is_empty() {
+        return vec!["".to_string(); minefield.len()];
+    }
+
     let height = minefield.len();
-    if height == 0 {
-        return vec![];
-    }
-
     let width = minefield[0].len();
-    if width == 0 {
-        return vec!["".to_string(); height];
-    }
-
     let v: Vec<Vec<char>> = minefield.into_iter().map(|s| s.chars().collect()).collect();
 
     let directions = [
@@ -26,38 +22,31 @@ pub fn annotate(minefield: &[&str]) -> Vec<String> {
 
     for i in 0..height {
         for j in 0..width {
-            match v[i][j] {
-                '*' => {
-                    board[i][j] = std::i8::MIN;
+            if v[i][j] == '*' {
+                board[i][j] = std::i8::MIN;
 
-                    for &(dx, dy) in directions.iter() {
-                        let x = j.wrapping_add(dx);
-                        let y = i.wrapping_add(dy);
+                for &(dx, dy) in directions.iter() {
+                    let x = j.wrapping_add(dx);
+                    let y = i.wrapping_add(dy);
 
-                        if x < width && y < height {
-                            board[y][x] += 1;
-                        }
+                    if x < width && y < height {
+                        board[y][x] += 1;
                     }
                 }
-                _ => {}
             }
         }
     }
 
-    let mut ans = vec![];
-
-    for line in board.iter() {
-        let l: String = line
-            .iter()
-            .map(|&c| match c {
-                0 => " ".to_string(),
-                _ if c < 0 => "*".to_string(),
-                _ => c.to_string(),
-            })
-            .collect();
-
-        ans.push(l);
-    }
-
-    ans
+    board
+        .iter()
+        .map(|line| {
+            line.iter()
+                .map(|&c| match c {
+                    0 => " ".to_string(),
+                    _ if c < 0 => "*".to_string(),
+                    _ => c.to_string(),
+                })
+                .collect()
+        })
+        .collect()
 }
