@@ -1,32 +1,13 @@
 /// Check a Luhn checksum.
 pub fn is_valid(code: &str) -> bool {
-    let code = code.replace(" ", "");
-
-    if code.len() <= 1 {
-        return false;
-    }
-
-    if !code.chars().all(|c| c.is_digit(10)) {
-        return false;
-    }
-
-    let sum: u32 = code
-        .chars()
+    code.chars()
+        .filter(|c| !c.is_whitespace())
         .rev()
-        .enumerate()
-        .map(|(i, c)| {
-            let mut digit = c.to_digit(10).unwrap();
-
-            if i % 2 == 1 {
-                digit *= 2;
-                if digit > 9 {
-                    digit -= 9;
-                }
-            }
-
-            digit
+        .try_fold((0, 0), |(sum, count), v| {
+            v.to_digit(10)
+                .map(|num| if count % 2 == 1 { num * 2 } else { num })
+                .map(|num| if num > 9 { num - 9 } else { num })
+                .map(|num| (sum + num, count + 1))
         })
-        .sum();
-
-    sum % 10 == 0
+        .map_or(false, |(sum, count)| sum % 10 == 0 && count > 1)
 }
