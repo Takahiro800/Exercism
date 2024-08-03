@@ -10,7 +10,7 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'
             let canditate = canditate.to_lowercase();
             let canditate_sorted = get_sorted(&canditate);
 
-            word != canditate && word_sorted == canditate_sorted
+            canditate != word && canditate_sorted == word_sorted
         })
         .copied()
         .collect()
