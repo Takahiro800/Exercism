@@ -1,2 +1,2 @@
 [workspace]
-members = ["hello-world", "reverse-string", "gigasecond", "minesweeper"]
+members = ["hello-world", "reverse-string", "gigasecond", "minesweeper", "luhn"]
