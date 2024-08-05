@@ -13,7 +13,7 @@ pub trait Planet {
     const EARTH_SECONDS_PER_YEAR: u64 = 31557600;
 
     fn years_during(duration: &Duration) -> f64 {
-        duration.seconds as f64 / (Self::EARTH_SECONDS_PER_YEAR as f64 * Self::ratio())
+        duration.seconds as f64 / (Self::ratio() * Self::EARTH_SECONDS_PER_YEAR as f64)
     }
 
     fn ratio() -> f64;
