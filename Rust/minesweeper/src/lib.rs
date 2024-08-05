@@ -1,4 +1,4 @@
-static DIRECTIONS: [(usize, usize); 8] = [
+const DIRECTIONS: [(usize, usize); 8] = [
     (!0, !0),
     (0, !0),
     (1, !0),
