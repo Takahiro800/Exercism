@@ -5,4 +5,5 @@ members = [
   "gigasecond",
   "anagram",
   "space-age",
+  "sublist",
 ]
