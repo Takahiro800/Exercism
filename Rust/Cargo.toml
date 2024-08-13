@@ -6,4 +6,5 @@ members = [
   "anagram",
   "space-age",
   "sublist",
+  "prime-factors",
 ]
