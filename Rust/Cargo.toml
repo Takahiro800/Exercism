@@ -7,4 +7,5 @@ members = [
   "space-age",
   "sublist",
   "minesweeper",
+  "luhn",
 ]
