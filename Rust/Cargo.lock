@@ -3,6 +3,10 @@
 version = 3
 
 [[package]]
+name = "anagram"
+version = "0.0.0"
+
+[[package]]
 name = "deranged"
 version = "0.3.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -83,6 +87,14 @@ dependencies = [
  "quote",
  "syn",
 ]
+
+[[package]]
+name = "space-age"
+version = "1.2.0"
+
+[[package]]
+name = "sublist"
+version = "0.0.0"
 
 [[package]]
 name = "syn"
